@@ -155,10 +155,10 @@ static void DrawGraph(const std::vector<Node>& graph, const std::vector<Node>& p
 
 int main(int argc, char* argv[])
 {
-    const int sizeX = 100;
-    const int sizeY = 100;
-    Node start{ 0, 0, 0 };
-    Node end{ sizeX - 1, sizeY / 2 - 1, 0 };
+    constexpr int sizeX = 100;
+    constexpr int sizeY = 100;
+    constexpr Node start{0, 0, 0, false};
+    constexpr Node end{sizeX - 1, sizeY / 2 - 1, 0 , false};
     std::vector<Node> graph;
     graph.reserve(sizeX * sizeY);
     for (int y = 0; y < sizeY; ++y)
@@ -174,7 +174,7 @@ int main(int argc, char* argv[])
     std::uniform_int_distribution<> dis(0, graph.size() - 1);
     for (int i = 0; i < 1000; ++i)
     {
-        int rand = dis(gen);
+        const int rand = dis(gen);
         if (graph[rand].isWall)
         {
             i--;
